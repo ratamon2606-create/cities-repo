@@ -51,4 +51,4 @@ print()
 
 # Print the max temperature for all the cities in Italy
 print("Max temperature for all the cities in Italy:")
-print(max([float(c['temperature']) for c in cities]))
+print(max([float(c['temperature']) for c in cities if c['country'] == 'Italy']))
