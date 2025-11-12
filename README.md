@@ -1,12 +1,8 @@
-# OOP_LAB_2
+# OOP_LAB_3
 
 ## Lab Overview
 
-This project is an Object-Oriented Programming (OOP) exercise demonstrating how to handle and process structured data using Python classes. The goal is to encapsulate data manipulation logic—loading, filtering, and aggregation—within dedicated classes, simulating the functionality of database queries or data frames (like Pandas).
-
-Key OOP principles demonstrated:
-* **Encapsulation:** Data and methods are bundled together within the `DataLoader` and `Table` classes.
-* **Method Chaining:** The `.filter()` method returns a new `Table` instance, allowing operations to be chained (e.g., `table.filter(...).aggregate(...)`).
+This project is an Object-Oriented Programming (OOP) exercise demonstrating how to handle and process structured data using Python classes.
 
 ---
 
@@ -14,21 +10,10 @@ Key OOP principles demonstrated:
 
 The required file structure for this project is minimal:
 
-OOP_LAB_2/ ├── data_processor.py # Contains DataLoader and Table classes, and example usage script └── Cities.csv # The required dataset for the examples
+OOP_LAB_3/ ├── data_processor.py #main program
+           └── Cities.csv 
+           └── Countries.csv
 
-
-### Data Schema (`Cities.csv`)
-
-The script requires a CSV file with at least the following headers:
-
-| Header | Type | Description |
-| :--- | :--- | :--- |
-| `city` | String | Name of the city |
-| `country` | String | Country name |
-| `temperature` | Numeric | Average annual temperature (°C) |
-| `population` | Numeric | Population (optional) |
-
----
 
 ## Design Overview
 
@@ -36,13 +21,23 @@ The script requires a CSV file with at least the following headers:
 * **Responsibility:** Handles file I/O operations. It takes a file name and uses `csv.DictReader` to load data into a list of dictionaries, where column headers become dictionary keys.
 * **Robustness:** Uses `pathlib.Path` for reliable file path resolution across different operating systems.
 
-### 2. `Table` Class
+### 2. `DB` Class
+* **Responsibility:** Stores the dictionary of tables object used in the project.
+
+| Method | Purpose | Key Feature |
+| :--- | :--- | :--- |
+| `insert(table)` | Adds a table loaded from `load_csv` to DB dictionary.  | Returns an updated version of DB dictionary. |
+| `search(key)` | Create new table with only data with that key. | Returns new table object. |
+
+### 3. `Table` Class
 * **Responsibility:** Stores the list of dictionaries (the data) and provides methods for data manipulation.
 
 | Method | Purpose | Key Feature |
 | :--- | :--- | :--- |
 | `filter(condition)` | Selects a subset of rows based on a provided `lambda` function. | Returns a **new** `Table` object. |
 | `aggregate(function, key)` | Calculates a summary value (e.g., average, count, max) on a specific column (`key`). | Attempts automatic type conversion to `float` for numerical analysis. |
+| `join(table, key)` | Combines two tables with the same key together. | Returns new table object. |
+
 
 ---
 
@@ -58,4 +53,3 @@ Clone the repository and navigate to the project directory:
 
 ```bash
 git clone https://github.com/ratamon2606-create/cities-repo.git
-cd OOP_LAB_2
