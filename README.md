@@ -10,9 +10,10 @@ This project is an Object-Oriented Programming (OOP) exercise demonstrating how 
 
 The required file structure for this project is minimal:
 
-OOP_LAB_3/ ├── data_processor.py #main program
-           └── Cities.csv 
-           └── Countries.csv
+OOP_LAB_3  
+├── data_processor.py #main program  
+└── Cities.csv  
+└── Countries.csv  
 
 
 ## Design Overview
